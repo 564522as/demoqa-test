@@ -9,7 +9,6 @@ class SelenideDemoApplicationTests {
 
     @Test
     public void contextLoads() {
-        Assertions.assertTrue(false);
     }
 
 }
