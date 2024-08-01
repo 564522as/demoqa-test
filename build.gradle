@@ -1,0 +1,53 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.3.2'
+    id 'io.spring.dependency-management' version '1.1.6'
+    id 'io.qameta.allure' version '2.9.6'
+    id 'org.gradle.test-retry' version '1.0.0'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(18)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+    testImplementation 'com.codeborne:selenide:7.3.2'
+    testImplementation 'io.rest-assured:rest-assured:5.4.0'
+    testImplementation 'io.qameta.allure:allure-selenide:2.20.1'
+    testImplementation 'org.aspectj:aspectjweaver:1.9.5'
+    testImplementation 'com.github.javafaker:javafaker:1.0.2'  exclude module: 'org.yaml'
+    implementation group: 'org.yaml', name: 'snakeyaml', version: '1.26'
+
+
+    testImplementation 'io.qameta.allure:allure-junit5:2.12.1'
+    testImplementation 'io.qameta.allure:allure-assertj:2.12.1'
+    testImplementation 'io.qameta.allure:allure-commandline:2.12.1'
+    testImplementation 'io.qameta.allure:allure-rest-assured:2.12.1'
+    testImplementation 'io.qameta.allure:allure-java-commons:2.12.1'
+
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+test {
+    retry {
+        maxRetries = 2
+        maxFailures = 20
+        failOnPassedAfterRetry = true
+    }
+}
