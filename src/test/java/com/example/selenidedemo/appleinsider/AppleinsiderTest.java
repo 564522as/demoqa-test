@@ -7,7 +7,7 @@ public class AppleinsiderTest extends BaseTest{
 
     private final String BASE_URL = "https://appleinsider.ru";
     private final String SEARCH_SENTENCE = "Чем iPhone 13 отличается от iPhone 12";
-    private final String EXPECTED_WORD = "iphone-11";
+    private final String EXPECTED_WORD = "iphone-12";
 
     @Test
     public void checkHref() {
