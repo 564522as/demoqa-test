@@ -14,7 +14,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class AlertTest {
+public class AlertTest extends BaseTest {
     public final String URL = "https://demoqa.com";
     private SublistPage sublistPage;
     @BeforeEach
