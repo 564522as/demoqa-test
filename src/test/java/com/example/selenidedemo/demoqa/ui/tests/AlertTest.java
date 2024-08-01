@@ -1,5 +1,6 @@
 package com.example.selenidedemo.demoqa.ui.tests;
 
+import com.example.selenidedemo.BaseTest;
 import com.codeborne.selenide.Driver;
 import com.codeborne.selenide.Selenide;
 import com.example.selenidedemo.demoqa.ui.pages.MainPage;
