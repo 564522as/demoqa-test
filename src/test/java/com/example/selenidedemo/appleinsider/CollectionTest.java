@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 
 import static com.codeborne.selenide.Selenide.$$x;
 
-public class CollectionTest {
+public class CollectionTest extends BaseTest {
     @Test
     public void openAllHref() {
         Selenide.open("https://ru.wikipedia.org/wiki/Java");
