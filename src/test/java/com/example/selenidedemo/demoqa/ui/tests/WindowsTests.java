@@ -28,10 +28,7 @@ public class WindowsTests extends BaseTest {
 
         Selenide.webdriver().driver().switchTo().window(0);
         Selenide.webdriver().driver().switchTo().window(1);
-//        Boolean b = ExpectedConditions
-//                .numberOfWindowsToBe(4)
-//                .apply(Selenide.webdriver().object());
-//        System.out.println(b);
+
         Assertions.assertEquals(2, Selenide.webdriver()
                                     .driver()
                                     .getWebDriver()
@@ -52,10 +49,7 @@ public class WindowsTests extends BaseTest {
 
         Selenide.webdriver().driver().switchTo().window(0);
         Selenide.webdriver().driver().switchTo().window(2);
-//        Boolean b = ExpectedConditions
-//                .numberOfWindowsToBe(4)
-//                .apply(Selenide.webdriver().object());
-//        System.out.println(b);
+
         Assertions.assertEquals(3, Selenide.webdriver()
                 .driver()
                 .getWebDriver()
@@ -71,8 +65,6 @@ public class WindowsTests extends BaseTest {
     public void testNewWindowMessage() {
         BrowserWindowsPage browserWindowsPage = sublistPage
                 .clickBrowserWindowsBtn();
-        SampleMessagePage sampleMessagePage =
-                browserWindowsPage.clickNewWindowMessageBtn();
 
         Assertions.assertEquals(Selenide.webdriver()
                 .driver()

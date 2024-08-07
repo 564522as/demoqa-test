@@ -1,5 +1,6 @@
 package com.example.selenidedemo.demoqa.api.account;
 
+import com.example.selenidedemo.demoqa.api.Specifications;
 import com.example.selenidedemo.demoqa.api.model.UserData;
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.AfterEach;
@@ -21,9 +22,8 @@ public class GenerateTokenTest {
     @Test
     public void testGetToken() {
         token = given()
-                .contentType(ContentType.JSON)
                 .body(userData)
-                .post(URL + "GenerateToken")
+                .post("GenerateToken")
                 .then()
                 .body("token", notNullValue())
                 .body("status", equalTo("Success"))

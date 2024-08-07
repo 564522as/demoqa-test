@@ -6,7 +6,9 @@ import com.example.selenidedemo.demoqa.api.model.Book;
 import com.example.selenidedemo.demoqa.api.model.ISBN;
 import com.example.selenidedemo.demoqa.api.model.UserData;
 import io.restassured.http.ContentType;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
@@ -19,6 +21,13 @@ import static org.hamcrest.Matchers.notNullValue;
 
 public class BookTests {
     private final String URL = "https://demoqa.com/BookStore/v1/";
+    private UserData userData;
+    private String token;
+    @BeforeEach
+    public void init() {
+        userData = AccountUtil.registration();
+        token = AccountUtil.generateToken(userData);
+    }
     @Test
     public void testGetBooks() {
         List<Book> books =
@@ -31,9 +40,8 @@ public class BookTests {
     }
     @Test
     public void testAddListOfBooks() {
-        UserData userData = AccountUtil.registration();
-        String token = AccountUtil.generateToken(userData);
-        List<ISBN> collectionOfIsbns = BookUtil.getALlBooks().stream()
+        List<ISBN> collectionOfIsbns =
+                BookUtil.getALlBooks().stream()
                 .map(x -> new ISBN(x.getIsbn())).collect(Collectors.toList());
 
         AddListOfBooksDTO addListOfBooksDTO =
@@ -46,19 +54,15 @@ public class BookTests {
                 .then()
                 .log().all()
                 .body("books.isbn", notNullValue());
-        AccountUtil.deleteUser(userData.getUserId(), token);
     }
     @Test
     public void testDeleteBooks() {
-        UserData userData = AccountUtil.registration();
-        String token = AccountUtil.generateToken(userData);
         given()
                 .contentType(ContentType.JSON)
                 .header("Authorization", "Bearer " + token)
                 .delete(URL + "Books?UserId=" + userData.getUserId())
                 .then()
                 .log().all();
-        AccountUtil.deleteUser(userData.getUserId(), token);
     }
     @Test
     public void testGetBook() {
@@ -72,8 +76,6 @@ public class BookTests {
     }
     @Test
     public void testDeleteOneBook() {
-        UserData userData = AccountUtil.registration();
-        String token = AccountUtil.generateToken(userData);
         Map<String, String> bookData = new HashMap<>();
         bookData.put("isbn", BookUtil.getALlBooks().get(1).getIsbn());
         bookData.put("userId", userData.getUserId());
@@ -83,10 +85,10 @@ public class BookTests {
                 .header("Authorization", "Bearer " + token)
                 .delete(URL + "Book")
                 .then()
-//                .body("userId", notNullValue())
-//                .body("isbn", notNullValue())
-//                .body("message", notNullValue())
                 .log().all();
+    }
+    @AfterEach
+    public void deleteUserData() {
         AccountUtil.deleteUser(userData.getUserId(), token);
     }
 }

@@ -1,5 +1,6 @@
 package com.example.selenidedemo.demoqa.api.account;
 
+import com.example.selenidedemo.demoqa.api.Specifications;
 import com.example.selenidedemo.demoqa.api.model.UserData;
 import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
@@ -13,7 +14,7 @@ public class AccountUtil {
         String userID = given()
                 .contentType(ContentType.JSON)
                 .body(userData)
-                .post(URL + "User")
+                .post("User")
                 .then()
                 .log().all()
                 .extract().jsonPath()
@@ -26,7 +27,7 @@ public class AccountUtil {
         given()
                 .contentType(ContentType.JSON)
                 .header("Authorization", "Bearer " + token)
-                .delete(URL + "User/" + userId)
+                .delete("User/" + userId)
                 .then().log().all()
                 .extract().jsonPath();
     }

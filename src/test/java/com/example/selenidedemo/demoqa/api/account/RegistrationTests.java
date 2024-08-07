@@ -14,7 +14,7 @@ public class RegistrationTests {
     private final UserData userData = UserData.getRandomUserData();
     private final String URL = "https://demoqa.com/Account/v1/";
     @Test
-    public void testSignIn() {
+    public void testSignUp() {
         String userID = given()
                 .contentType(ContentType.JSON)
                 .body(userData)
