@@ -63,8 +63,9 @@ public class WindowsTests extends BaseTest {
 
     @Test
     public void testNewWindowMessage() {
-        BrowserWindowsPage browserWindowsPage = sublistPage
-                .clickBrowserWindowsBtn();
+        sublistPage
+                .clickBrowserWindowsBtn()
+                .clickNewWindowMessageBtn();
 
         Assertions.assertEquals(Selenide.webdriver()
                 .driver()

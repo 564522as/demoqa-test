@@ -22,8 +22,9 @@ public class GenerateTokenTest {
     @Test
     public void testGetToken() {
         token = given()
+                .contentType(ContentType.JSON)
                 .body(userData)
-                .post("GenerateToken")
+                .post(URL + "GenerateToken")
                 .then()
                 .body("token", notNullValue())
                 .body("status", equalTo("Success"))

@@ -2,6 +2,7 @@ package com.example.selenidedemo.demoqa.ui.tests;
 
 import com.codeborne.selenide.Driver;
 import com.codeborne.selenide.Selenide;
+import com.example.selenidedemo.BaseTest;
 import com.example.selenidedemo.demoqa.ui.pages.MainPage;
 import com.example.selenidedemo.demoqa.ui.pages.frameswindows.FramesPage;
 import com.example.selenidedemo.demoqa.ui.pages.frameswindows.ModalDialogsPage;
@@ -13,7 +14,7 @@ import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Selenide.$x;
 
-public class FrameTests {
+public class FrameTests extends BaseTest {
     public final String URL = "https://demoqa.com";
     private SublistPage sublistPage;
     @BeforeEach

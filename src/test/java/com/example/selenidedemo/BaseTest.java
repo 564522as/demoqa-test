@@ -10,9 +10,8 @@ import org.junit.jupiter.api.BeforeEach;
 
 public class BaseTest {
     public void setUp() {
-        Configuration.pageLoadTimeout = 100000;
         Configuration.browser = "chrome";
-        Configuration.headless = false;
+        Configuration.headless = true;
         Configuration.browserSize = "1920x1080";
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide().screenshots(true));
     }

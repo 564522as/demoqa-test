@@ -14,7 +14,7 @@ public class AccountUtil {
         String userID = given()
                 .contentType(ContentType.JSON)
                 .body(userData)
-                .post("User")
+                .post(URL + "User")
                 .then()
                 .log().all()
                 .extract().jsonPath()
@@ -27,7 +27,7 @@ public class AccountUtil {
         given()
                 .contentType(ContentType.JSON)
                 .header("Authorization", "Bearer " + token)
-                .delete("User/" + userId)
+                .delete(URL + "User/" + userId)
                 .then().log().all()
                 .extract().jsonPath();
     }
